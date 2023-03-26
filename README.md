@@ -1,3 +1,5 @@
+local PlaceID = game.PlaceId
+if PlaceID == 11606818992 then
 if not _G.FlingStatus then
     _G.FlingStatus = false
         game:GetService("Players").LocalPlayer.PlayerGui.Menu.TA.Visible = true
@@ -60,4 +62,5 @@ while wait() do
     end
 end
 
+end
 end
