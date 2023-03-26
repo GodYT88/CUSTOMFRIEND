@@ -20,6 +20,11 @@ game:GetService("UserInputService").InputBegan:connect(function(Key,Chat)
                     OwnLadder.Main.BodyPosition.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position+Vector3.new(0,1,0)
                 end
             end
+        elseif Key.KeyCode == Enum.KeyCode.R then
+            local OwnLadder = Instance.new("BodyPosition",game:GetService("Workspace").playerPlaced[tostring(game.Players.LocalPlayer.Name .. "_ladder")])
+            OwnLadder.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position+Vector3.new(0,5000,0)
+            OwnLadder.MaxForce = Vector3.new(9e99,9e99,9e99)
+            OwnLadder.P = 999999
         end
     end
 end)
