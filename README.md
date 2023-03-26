@@ -1,6 +1,7 @@
 local PlaceID = game.PlaceId
 if PlaceID == 11606818992 then
 if not _G.FlingStatus then
+    spawn(function()
     _G.FlingStatus = false
         game:GetService("Players").LocalPlayer.PlayerGui.Menu.TA.Visible = true
         game:GetService("Players").LocalPlayer.PlayerGui.Menu.TA.TextSize = 5
@@ -23,13 +24,6 @@ game:GetService("UserInputService").InputBegan:connect(function(Key,Chat)
     end
 end)
 
-while wait() do
-    if game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored == true then
-        local OwnLadder = game:GetService("Workspace").playerPlaced[tostring(game.Players.LocalPlayer.Name .. "_ladder")]
-        OwnLadder.Main.BodyPosition.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position+Vector3.new(0,-5000,0)
-    end
-end
-
 game:GetService("Workspace").playerPlaced.ChildAdded:connect(function(part)
     if part.Name == tostring(game.Players.LocalPlayer.Name .. "_ladder") then
         if _G.FlingStatus == true then
@@ -42,7 +36,7 @@ game:GetService("Workspace").playerPlaced.ChildAdded:connect(function(part)
         local Fling2 = Instance.new("BodyAngularVelocity" , part.Main)
         Fling2.P = 9e99
         Fling2.MaxTorque = Vector3.new(0,9e99,0)
-        Fling2.AngularVelocity = Vector3.new(0,75,0)
+        Fling2.AngularVelocity = Vector3.new(0,100,0)
         local BodyGyro = Instance.new("BodyGyro" , part.Main)
         BodyGyro.CFrame = BodyGyro.CFrame * CFrame.Angles(math.rad(180),math.rad(90),math.rad(90))
         BodyGyro.MaxTorque = Vector3.new(40000,1000,40000)
@@ -61,6 +55,16 @@ while wait() do
         OnOff.Text = "Status Fling : Off"
     end
 end
-
+end)
+spawn(function()
+while wait() do
+    pcall(function()
+    if game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored == true then
+        local OwnLadder = game:GetService("Workspace").playerPlaced[tostring(game.Players.LocalPlayer.Name .. "_ladder")]
+        OwnLadder.Main.BodyPosition.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position+Vector3.new(0,5000,0)
+    end
+    end)
+end
+end)
 end
 end
