@@ -3,7 +3,7 @@ if PlaceID == 11606818992 then
 if not _G.FlingStatus then
     spawn(function()
     _G.FlingStatus = false
-    _G.SpinPower = 50
+    _G.SpinPower = 25
         game:GetService("Players").LocalPlayer.PlayerGui.Menu.TA.Visible = true
         game:GetService("Players").LocalPlayer.PlayerGui.Menu.TA.TextSize = 5
 game:GetService("UserInputService").InputBegan:connect(function(Key,Chat)
@@ -23,22 +23,22 @@ game:GetService("UserInputService").InputBegan:connect(function(Key,Chat)
             end
         elseif Key.KeyCode == Enum.KeyCode.R then
             if not game:GetService("Workspace").playerPlaced[tostring(game.Players.LocalPlayer.Name .. "_ladder")].Main:FindFirstChild("BodyPosition") then
-            local OwnLadder = Instance.new("BodyPosition",game:GetService("Workspace").playerPlaced[tostring(game.Players.LocalPlayer.Name .. "_ladder")].Main)
-            OwnLadder.Position = Vector3.new(99999,0,99999)
-            OwnLadder.MaxForce = Vector3.new(9e99,9e99,9e99)
-            OwnLadder.P = 9999999
-            wait(0.1)
-            OwnLadder:Destroy()
-            else
-            game:GetService("Workspace").playerPlaced[tostring(game.Players.LocalPlayer.Name .. "_ladder")].Main.BodyPosition.Position = Vector3.new(99999,0,99999)
-            game:GetService("Workspace").playerPlaced[tostring(game.Players.LocalPlayer.Name .. "_ladder")].Main.BodyPosition.P = 99999999
-            wait(0.1)
-            game:GetService("Workspace").playerPlaced[tostring(game.Players.LocalPlayer.Name .. "_ladder")].Main.BodyPosition:Destroy()
+                pcall(function()
+            firetouchinterest(game:GetService("Workspace").Map.SpecialParts.lava , game:GetService("Workspace").playerPlaced[tostring(game.Players.LocalPlayer.Name .. "_ladder")].Main , 0)
+                end)
             end
         elseif Key.KeyCode == Enum.KeyCode.T then
-            _G.SpinPower = _G.SpinPower + 50
+            if _G.SpinPower >= 1000 then
+            _G.SpinPower = _G.SpinPower + 250
+            else
+                _G.SpinPower = _G.SpinPower + 25
+            end
         elseif Key.KeyCode == Enum.KeyCode.Y then
-            _G.SpinPower = _G.SpinPower - 50
+            if _G.SpinPower >= 1000 then
+            _G.SpinPower = _G.SpinPower - 250
+            else
+                _G.SpinPower = _G.SpinPower - 25
+            end
         end
     end
 end)
@@ -99,7 +99,7 @@ while wait() do
     if _G.SpinPower >= 10001 then
         _G.SpinPower = 50
     elseif _G.SpinPower <= 0 then
-        _G.SpinPower = 50
+        _G.SpinPower = 25
     end
 end
 end)
