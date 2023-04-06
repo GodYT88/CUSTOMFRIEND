@@ -105,17 +105,24 @@ end
 end)
 end
 elseif PlaceID == 12004594806 then
-    local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("GodY Hub", "DarkTheme")
+local Mercury = loadstring(game:HttpGet("https://raw.githubusercontent.com/deeeity/mercury-lib/master/src.lua"))()
 
-local Credit = Window:NewTab("Credit")
-local CreditSection = Credit:NewSection("Credit By GodYT_2.0#5102")
+local GUI = Mercury:Create{
+    Name = "GodY Hub",
+    Size = UDim2.fromOffset(600, 400),
+    Theme = Mercury.Themes.Dark,
+    Link = ""
+}
 
-local Main = Window:NewTab("Main")
-local MainFunction = Main:NewSection("Main Function")
+local Main = GUI:Tab{
+	Name = "Main",
+	Icon = "rbxassetid://8569322835"
+}
 
-MainFunction:NewTextBox("Select Players : Beli", "To Steal Beli", function(Name)
-    
+Main:Textbox{
+    Name = "Select Player : Beli",
+    Callback = function(Name)
+    if Name ~= "" then
 local Target = tostring(Name)
 local A = 0
 for i,v in pairs(game:GetService("Players"):GetChildren()) do
@@ -141,10 +148,14 @@ elseif string.find(string.lower(v.DisplayName) , string.lower(Target)) then
     end
 end
 end
-end)
+    end
+    end
+}
 
-MainFunction:NewTextBox("Select Players : Gem", "To Steal Gem", function(Name)
-    
+Main:Textbox{
+    Name = "Select Player : Gem",
+    Callback = function(Name)
+    if Name ~= "" then
 local Target = tostring(Name)
 local A = 0
 for i,v in pairs(game:GetService("Players"):GetChildren()) do
@@ -170,10 +181,15 @@ elseif string.find(string.lower(v.DisplayName) , string.lower(Target)) then
     end
 end
 end
-end)
+    end
+    end
+}
 
-MainFunction:NewButton("Free Random DF", "Random DF For Free", function()
-    local RarityTable = {
+Main:Button{
+	Name = "Random DF : Free",
+	Description = nil,
+	Callback = function() 
+	        local RarityTable = {
         [1] = "Common",
         [2] = "Uncommon",
         [3] = "Epic",
@@ -189,5 +205,6 @@ MainFunction:NewButton("Free Random DF", "Random DF For Free", function()
 game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("SpinGui"):WaitForChild("LOL"):WaitForChild("Spin"):WaitForChild("Spin"):WaitForChild("Reward"):FireServer(unpack(args))
         end
     end
-end)
+	end
+}
 end
