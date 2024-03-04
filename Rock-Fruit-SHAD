@@ -1,0 +1,36 @@
+local plr = game:GetService("Players").LocalPlayer
+
+function TpB(x,y,z)
+pcall(function()
+  local OldCF = plr.Character.HumanoidRootPart.CFrame
+  local TpCF = CFrame.new(x,y,z)
+  
+  if OldCF and TpCF then
+    plr.Character.HumanoidRootPart.CFrame = TpCF
+      wait(0.1)
+    plr.Character.HumanoidRootPart.CFrame = OldCF
+  end
+end)
+end
+
+for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+pcall(function()
+if v:IsA("Tool") and v.Name == "Shadow Diary" then
+local Handle = v.PrimaryPart or v:FindFirstChild("Handle") or v:FindFirstChildOfClass("BasePart")
+if Handle and plr.Character:FindFirstChild("Humanoid") and plr.Character:FindFirstChild("Humanoid").Health > 0 then
+TpB(Handle.Position.X , Handle.Position.Y , Handle.Position.Z)
+end
+end
+end)
+end
+
+game:GetService("Workspace").ChildAdded:Connect(function(thing)
+pcall(function()
+  if thing:IsA("Tool") and thing.Name == "Shadow Diary" then
+    local Handle = thing.PrimaryPart or thing:FindFirstChild("Handle") or thing:FindFirstChildOfClass("BasePart")
+    if Handle and plr.Character:FindFirstChild("Humanoid") and plr.Character:FindFirstChild("Humanoid").Health > 0 then
+      TpB(Handle.Position.X , Handle.Position.Y , Handle.Position.Z)
+    end
+  end
+end)
+end)
