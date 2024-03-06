@@ -7,7 +7,7 @@ pcall(function()
   
   if OldCF and TpCF then
     plr.Character.HumanoidRootPart.CFrame = TpCF
-      wait(0.1)
+      wait(0.5)
     plr.Character.HumanoidRootPart.CFrame = OldCF
   end
 end)
@@ -29,7 +29,7 @@ pcall(function()
   if thing:IsA("Tool") and thing.Name == "Shadow Diary" then
     local Handle = thing.PrimaryPart or thing:FindFirstChild("Handle") or thing:FindFirstChildOfClass("BasePart")
     if Handle and plr.Character:FindFirstChild("Humanoid") and plr.Character:FindFirstChild("Humanoid").Health > 0 then
-      TpB(Handle.Position.X , Handle.Position.Y , Handle.Position.Z)
+      TpB(Handle.CFrame.X , Handle.CFrame.Y , Handle.CFrame.Z)
     end
   end
 end)
